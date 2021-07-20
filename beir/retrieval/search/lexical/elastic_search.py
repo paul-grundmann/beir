@@ -111,9 +111,9 @@ class ElasticSearch(object):
             generate_actions (generator function): generator function must be provided 
             progress (tqdm.tqdm): tqdm progress_bar
         """
-        for ok, action in parallel_bulk(
+        for ok, action in streaming_bulk(
                 client=self.es, index=self.index_name, actions=generate_actions,
-                chunk_size=10000,queue_size=32, thread_count=16,max_chunk_bytes=1048576000
+                chunk_size=10000, max_chunk_bytes=10485760000
         ):
             progress.update(1)
         progress.reset()
