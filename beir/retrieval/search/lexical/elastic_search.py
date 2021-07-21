@@ -113,7 +113,7 @@ class ElasticSearch(object):
         """
         for ok, action in streaming_bulk(
                 client=self.es, index=self.index_name, actions=generate_actions,
-                chunk_size=10000, max_chunk_bytes=10485760000
+                chunk_size=100000, max_chunk_bytes=10485760000
         ):
             progress.update(1)
         progress.reset()
