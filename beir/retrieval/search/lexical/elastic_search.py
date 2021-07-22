@@ -113,7 +113,7 @@ class ElasticSearch(object):
         """
         for ok, action in parallel_bulk(
                 client=self.es, index=self.index_name, actions=generate_actions,
-                chunk_size=10000, max_chunk_bytes=104857600, queue_size=16, thread_count=4
+                chunk_size=10000, max_chunk_bytes=104857600, queue_size=32, thread_count=8
         ):
             progress.update(1)
         progress.reset()
